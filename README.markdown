@@ -1,7 +1,8 @@
-Custom trace listener for writing messages from the Enterprise Library Logging Application Block to Loggly.com.
+Custom trace listener for writing messages from the Enterprise Library Logging Application Block to [Loggly.com](http://loggly.com).
 
-Usage:
+### Usage:
 
+```c#
 <configuration>
     <loggingConfiguration name="" tracingEnabled="true" defaultCategory="General">
         <listeners>
@@ -15,3 +16,4 @@ Usage:
 	</loggingConfiguration>
 	...
 </configuration>
+```
