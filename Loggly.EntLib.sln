@@ -6,8 +6,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5CFA192A-AB0B-439A-A303-6E81ADCF9465}"
 	ProjectSection(SolutionItems) = preProject
 		..\CustomDictionary.xml = ..\CustomDictionary.xml
-		..\Loggly.EntLib.1.0.nuspec = ..\Loggly.EntLib.1.0.nuspec
 		README = README
+		README.markdown = README.markdown
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Loggly.EntLib.IntegrationTests", "IntegrationTests\Loggly.EntLib.IntegrationTests.csproj", "{11475DAC-C0F0-406C-8208-C1A29BEE017E}"
