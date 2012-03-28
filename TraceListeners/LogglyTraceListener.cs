@@ -21,13 +21,17 @@
             }
 
             this.Formatter = formatter;
-            this.InputKey = logglyInputKey;
             this.Name = name;
         }
 
-        public string InputKey { get; set; }
+        public LogglyTraceListener(string name, ILogFormatter formatter, Loggly.ILogger logger)
+        {
+            this.Formatter = formatter;
+            this.Logger = logger;
+            this.Name = name;
+        }
 
-        public ILogger Logger { get; set; }
+        public Loggly.ILogger Logger { get; set; }
 
         public override void TraceData(
             TraceEventCache eventCache, 

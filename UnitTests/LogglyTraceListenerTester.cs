@@ -14,7 +14,6 @@
     [TestClass]
     public class LogglyTraceListenerTester : IDisposable
     {
-        private string _expectedInputKey;
         private bool _isDisposed;
         private ILogFormatter _mockLogFormatter;
         private ILogger _mockLogger;
@@ -42,45 +41,17 @@
         [TestInitialize]
         public void InitializeTest()
         {
-            this._expectedInputKey = GetRandom.String(10);
             this._mockLogFormatter = Substitute.For<ILogFormatter>();
             this._mockLogger = Substitute.For<ILogger>();
-            this._targetListener = new LogglyTraceListener(GetRandom.String(10), this._mockLogFormatter, this._expectedInputKey);
+            this._targetListener = new LogglyTraceListener(GetRandom.String(10), this._mockLogFormatter, this._mockLogger);
         }
-
-        ////[TestMethod]
-        ////public void TestConstructorDoesNotSetDefaultFormatter()
-        ////{
-        ////    using (var newListener = new LogglyTraceListener())
-        ////    {
-        ////        newListener.Formatter.Should().BeNull();
-        ////    }
-        ////}
-
-        ////[TestMethod]
-        ////public void TestConstructorDoesNotSetDefaultLogger()
-        ////{
-        ////    using (var newListener = new LogglyTraceListener())
-        ////    {
-        ////        newListener.Logger.Should().BeNull();
-        ////    }
-        ////}
-
-        ////[TestMethod]
-        ////public void TestConstructorSetsEmptyDefaultName()
-        ////{
-        ////    using (var newListener = new LogglyTraceListener())
-        ////    {
-        ////        newListener.Name.Should().BeEmpty();
-        ////    }
-        ////}
 
         [TestMethod]
         public void TestConstructorSetsExpectedFormatter()
         {
             var expectedFormatter = Substitute.For<ILogFormatter>();
 
-            using (var newListener = new LogglyTraceListener(GetRandom.String(10), expectedFormatter, this._expectedInputKey))
+            using (var newListener = new LogglyTraceListener(GetRandom.String(10), expectedFormatter, this._mockLogger))
             {
                 newListener.Formatter.Should().BeSameAs(expectedFormatter);
             }
@@ -91,7 +62,7 @@
         {
             var expectedLogger = Substitute.For<ILogger>();
 
-            using (var newListener = new LogglyTraceListener(GetRandom.String(10), this._mockLogFormatter, this._expectedInputKey))
+            using (var newListener = new LogglyTraceListener(GetRandom.String(10), this._mockLogFormatter, expectedLogger))
             {
                 newListener.Logger.Should().BeSameAs(expectedLogger);
             }
@@ -102,7 +73,7 @@
         {
             var expectedName = GetRandom.String(10);
 
-            using (var newListener = new LogglyTraceListener(expectedName, this._mockLogFormatter, this._expectedInputKey))
+            using (var newListener = new LogglyTraceListener(expectedName, this._mockLogFormatter, this._mockLogger))
             {
                 newListener.Name.Should().Be(expectedName);
             }
